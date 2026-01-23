@@ -22,7 +22,6 @@ class ThemeController extends GetxController {
       setThemeMode(false);
       isDark = false;
     }
-    ToastUtil.showText(isDark ? "Dark Mode" : "Light Mode");
     _theme.value = isDark ? darkTheme : lightTheme;
   }
 
