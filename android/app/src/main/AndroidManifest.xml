@@ -43,6 +43,11 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+<!--    读取外部存储权限，用于读取下载的音频文件    -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!--    网络权限，用于下载音频文件    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 </manifest>
