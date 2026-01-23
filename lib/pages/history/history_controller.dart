@@ -39,6 +39,13 @@ class HistoryController extends GetxController {
     await HistoryStore.set(_historyList.toList());
   }
 
+  Future<void> removeHistory(Video video)async {
+    _historyList.remove(video);
+    await HistoryStore.set(_historyList.toList());
+  }
+
+
+
   Future<void> clear() async {
     _historyList.clear();
     await HistoryStore.set([]);

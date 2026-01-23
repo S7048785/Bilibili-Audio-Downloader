@@ -67,13 +67,13 @@ class HomePage extends StatelessWidget {
               style: (style) => style.copyWith(
                 fillColor: brand?.inputBackGroundColor,
                 filled: true,
-                // hintTextStyle: FWidgetStateMap<TextStyle>({
-                //   WidgetState.any: TextStyle(fontSize: 16.0),
-                // }),
               ),
               suffixBuilder: (context, style, state) => IconButton(
                 icon: Icon(FIcons.copy, color: brand?.iconColor),
-                onPressed: () {},
+                onPressed: () async {
+                  // 粘贴到输入框
+                  inputController.text = (await Clipboard.getData(Clipboard.kTextPlain))?.text ?? '';
+                },
               ),
               hint: '请输入BV号',
               clearable: (value) => value.text.isNotEmpty,
