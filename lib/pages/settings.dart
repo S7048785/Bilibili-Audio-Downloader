@@ -1,4 +1,4 @@
-import 'package:bilibili_audio_downloader/theme_controller.dart';
+import 'package:bilibili_audio_downloader/theme/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,6 @@
 import 'package:bilibili_audio_downloader/pages/history/history_controller.dart';
 import 'package:bilibili_audio_downloader/theme/brand.dart';
-import 'package:bilibili_audio_downloader/theme_controller.dart';
+import 'package:bilibili_audio_downloader/theme/theme_controller.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
