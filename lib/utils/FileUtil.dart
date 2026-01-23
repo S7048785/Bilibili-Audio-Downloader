@@ -9,19 +9,24 @@ import 'file_saver_stub.dart' if (dart.library.html) 'file_saver_web.dart';
 
 class FileUtil {
   /// 保存音频到手机或 Web 浏览器
-  static Future<void> saveAudio(Uint8List audioData, String? fileName) async {
+  /// 返回保存的文件路径
+  static Future<String?> saveAudio(Uint8List audioData, String? fileName) async {
     if (kIsWeb) {
       fileName ??= 'audio-${DateTime.now().millisecondsSinceEpoch}.mp3';
-      await saveToWeb(audioData, fileName);
+      // 保存到 Web 浏览器并返回文件路径
+      await saveToWeb(audioData, fileName) ?? '';
+      return null;
     }
     if (io.Platform.isAndroid) {
       fileName ??= 'audio-${DateTime.now().millisecondsSinceEpoch}.mp3';
-      _saveToAndroidMusic(audioData, fileName);
+      // 保存到 Android 音乐目录并返回文件路径
+      return await _saveToAndroidMusic(audioData, fileName);
     }
   }
 
   /// 保存音频到 Android 音乐目录
-  static Future<void> _saveToAndroidMusic(
+  /// 返回保存的文件路径
+  static Future<String?> _saveToAndroidMusic(
     Uint8List audioData,
     String fileName,
   ) async {
@@ -37,8 +42,7 @@ class FileUtil {
       // 创建文件并写入数据
       io.File file = io.File(fullPath);
       await file.writeAsBytes(audioData);
-
-      print('Audio saved to music directory: $fullPath');
+      return musicPath;
 
       // 刷新媒体库，使文件立即可见
       // await _refreshMediaStore(fullPath);

@@ -6,6 +6,9 @@ import "package:bilibili_audio_downloader/models/Video.dart";
 // import "package:bilibili_audio_downloader/utils/FileUtil.dart";
 import "package:http/http.dart" as http;
 
+import "FileUtil.dart";
+import "ToastUtil.dart";
+
 class AudioDownloader {
 
   /// 获取音频
@@ -14,8 +17,9 @@ class AudioDownloader {
   ///
   /// 返回音频标题
   static Future<Video> getAudio(String bvid) async {
+    String url = "";
     if (bvid.startsWith("BV")) {
-      bvid = "https://www.bilibili.com/video/$bvid";
+      url = "https://www.bilibili.com/video/$bvid";
     }
     final headers = {
       "User-Agent":
@@ -23,7 +27,7 @@ class AudioDownloader {
       "Referer": "https://www.bilibili.com/",
     };
 
-    var response = await http.get(Uri.parse(bvid), headers: headers);
+    var response = await http.get(Uri.parse(url), headers: headers);
     if (response.statusCode != 200) {
       throw Exception("请求失败: ${response.statusCode}");
     }
@@ -42,8 +46,8 @@ class AudioDownloader {
     response = await http.get(Uri.parse(audioUrl), headers: headers);
     if (response.statusCode == 200) {
       // 写入文件
-      // await FileUtil.saveAudio(response.bodyBytes, filename);
-      print("音频下载完成: $filename");
+      final filePath = await FileUtil.saveAudio(response.bodyBytes, filename);
+      ToastUtil.showText("下载成功, 保存路径: \n$filePath");
     } else {
       print("Failed to download audio, status code: ${response.statusCode}");
     }

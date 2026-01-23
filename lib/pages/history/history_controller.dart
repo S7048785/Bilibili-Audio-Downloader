@@ -17,9 +17,7 @@ class HistoryController extends GetxController {
     try {
       final video = await AudioDownloader.getAudio(bvid);
       addHistory(video);
-      ToastUtil.showText("下载成功: \n${video.title}");
     } catch (e) {
-      print("下载失败: \n${e.toString()}");
       ToastUtil.showText("下载失败: \n${e.toString()}");
       throw Exception(e.toString());
     }
@@ -27,9 +25,11 @@ class HistoryController extends GetxController {
 
   Future<void> addHistory(Video video) async {
     // 检查是否已存在相同视频
-    if (_historyList.contains(video)) {
-      // 如果已存在，则移除旧的记录
-      _historyList.remove(video);
+    for (var v in _historyList) {
+      if (v.bvid == video.bvid) {
+        // 如果已存在，则移除旧的记录
+        _historyList.remove(video);
+      }
     }
     // 限制历史记录数量
     if (_historyList.length > 20) {
