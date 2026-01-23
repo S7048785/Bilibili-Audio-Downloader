@@ -5,10 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HistoryStore {
 
-  static Future<void> init() async {
-
-  }
-
   static Future<List<Video>> get() async {
     final prefs = await SharedPreferences.getInstance();
     final jsonList = prefs.getString('history');
@@ -23,7 +19,6 @@ class HistoryStore {
   }
 
   static Future<void> set(List<Video> list) async {
-
     final prefs = await SharedPreferences.getInstance();
 
     final jsonStr = jsonEncode(
