@@ -33,6 +33,13 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Web
+/web/plugins/
+/web/packages/
+/web/flutter_service_worker.js
+/web/version.json
+/web/assets/
+
 # Symbolication related
 app.*.symbols
 
