@@ -1,3 +1,0 @@
-# 忽略构建产物的语言统计
-build/** linguist-vendored
-web/** linguist-vendored
