@@ -1,6 +1,6 @@
 # Bilibili Audio Downloader
 
-一个简单的 Flutter 桌面应用，用于提取和下载 Bilibili 视频的音频。
+一个简单的 Flutter 移动端应用，用于提取和下载 Bilibili 视频的音频。
 
 ## 功能
 
